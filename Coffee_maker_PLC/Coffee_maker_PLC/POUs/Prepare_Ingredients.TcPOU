@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Prepare_Ingredients" Id="{8ebfebee-71da-43c6-afc1-ea498d4ce281}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Prepare_Ingredients
+VAR
+	    Counter: TON;                     // Timer 
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Counter(IN := TRUE, PT := T#2S); // 2 seconden timer
+
+gvl.Ingredients_Ready := TRUE;]]></ST>
+    </Implementation>
+    <LineIds Name="Prepare_Ingredients">
+      <LineId Id="6" Count="1" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

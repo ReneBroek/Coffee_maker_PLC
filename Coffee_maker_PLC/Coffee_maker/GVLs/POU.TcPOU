@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="POU" Id="{0ce6c3ec-8a3d-4bc0-8d7d-9915ce0e8b7f}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM POU
+VAR
+
+	Watertemp : INT := 20;
+	Grind_OK : BOOL := 0;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <LineIds Name="POU">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
