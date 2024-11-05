@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Lamp_Loop" Id="{92fa040d-81c2-4d42-9428-1b69e2f0988d}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Lamp_Loop
+VAR
+	Strength : INT;
+	Lamp1 : BOOL := FALSE; // Output for Lamp 1
+    Lamp2 : BOOL := FALSE; // Output for Lamp 2
+    Lamp3 : BOOL := FALSE; // Output for Lamp 3
+
+    tCycleTimer : TON; // Timer for cycle timing
+    nCycleStep : INT := 0; // State variable to track which lamp is on 
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF gvl.LamploopOn THEN 
+	// Timer instellingen
+	tCycleTimer(IN := TRUE, PT := T#0.5S); // De timer is ingesteld op 2 seconden
+	
+	IF tCycleTimer.Q THEN
+		tCycleTimer(IN := FALSE);  // Stop de timer zodra deze is afgelopen
+		tCycleTimer(IN := TRUE);   // Reset de timer voor de volgende cyclus
+	
+		// Volgende stap van de cyclus
+		nCycleStep := nCycleStep + 1;
+		
+		IF nCycleStep > 2 THEN
+			nCycleStep := 0; // Reset de cyclus na 3 stappen
+		END_IF
+	END_IF
+	
+	// Lamp logica
+	CASE nCycleStep OF
+		0: // Lamp 1 aan, andere uit
+			Lamp1 := TRUE;
+			Lamp2 := FALSE;
+			Lamp3 := FALSE;
+		1: // Lamp 2 aan, andere uit
+			Lamp1 := FALSE;
+			Lamp2 := TRUE;
+			Lamp3 := FALSE;
+		2: // Lamp 3 aan, andere uit
+			Lamp1 := FALSE;
+			Lamp2 := FALSE;
+			Lamp3 := TRUE;
+	END_CASE
+END_IF
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="Lamp_Loop">
+      <LineId Id="16" Count="32" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

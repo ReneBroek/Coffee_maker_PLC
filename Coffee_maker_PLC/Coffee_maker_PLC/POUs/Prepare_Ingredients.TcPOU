@@ -3,17 +3,35 @@
   <POU Name="Prepare_Ingredients" Id="{8ebfebee-71da-43c6-afc1-ea498d4ce281}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM Prepare_Ingredients
 VAR
-	    Counter: TON;                     // Timer 
-
-END_VAR
-]]></Declaration>
+	BoneContainer: REAL := 0;	
+	Prepairing : BOOL := FALSE;
+	Timer:TON;
+END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[Counter(IN := TRUE, PT := T#2S); // 2 seconden timer
+      <ST><![CDATA[Timer(IN := TRUE, PT := T#100MS); 				// 1 seconden timer
 
-gvl.Ingredients_Ready := TRUE;]]></ST>
+IF gvl.Start AND BoneContainer <= 90 THEN
+    Timer(IN := TRUE, PT := T#1S);   		// Stel de timer in om elke seconde af te gaan
+    Prepairing := TRUE;
+
+    IF Timer.Q THEN
+        BoneContainer := BoneContainer + 1;  // Verhoog de inhoud van BoneContainer met 1
+        Timer(IN := FALSE);                  // Reset de timer na een seconde
+    END_IF
+
+ELSIF BoneContainer >= 90 THEN
+    gvl.Ingredients_Ready := TRUE;
+    Prepairing := FALSE;
+    Timer(IN := FALSE);                      // Stop de timer wanneer BoneContainer vol is
+
+ELSIF gvl.Start = FALSE THEN
+    Prepairing := FALSE;
+    Timer(IN := FALSE);                      // Reset de timer wanneer Start FALSE is
+END_IF
+]]></ST>
     </Implementation>
     <LineIds Name="Prepare_Ingredients">
-      <LineId Id="6" Count="1" />
+      <LineId Id="13" Count="19" />
       <LineId Id="5" Count="0" />
     </LineIds>
   </POU>

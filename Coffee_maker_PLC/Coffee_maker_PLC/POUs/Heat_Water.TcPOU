@@ -3,25 +3,35 @@
   <POU Name="Heat_Water" Id="{9b10876e-9be0-4e07-863f-5624c892b629}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM Heat_Water
 VAR
-    Counter: TON;                     	// Timer 
-	WaterTemp: INT := 20;				// temperatuur van het water 
-END_VAR
-]]></Declaration>
+	WaterTemp: INT := 20;
+	Heating : bool := false;
+	ELSIFgvl: INT;
+	Timer:TON;
+	
+END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[
-IF WaterTemp <= 85 THEN
-	WaterTemp = WaterTemp =1;
-ELSIF 
-	Water_Warm := TRUE;
-END_IF
-]]></ST>
+      <ST><![CDATA[IF gvl.Start AND WaterTemp <= 85 THEN
+    Timer(IN := TRUE, PT := T#100MS);  
+    Heating := TRUE;
+
+    IF Timer.Q THEN 
+        WaterTemp := WaterTemp + 1;  // Verhoog de temperatuur met 1 graad per seconde
+        Timer(IN := FALSE);          // Reset de timer na een seconde
+    END_IF
+
+ELSIF gvl.Start = FALSE THEN
+    Heating := FALSE;
+    Timer(IN := FALSE);              // Zorg ervoor dat de timer wordt gereset als Start FALSE is
+
+ELSIF WaterTemp >= 85 THEN  
+    Heating := FALSE;
+    gvl.Water_Warm := TRUE;	
+    Timer(IN := FALSE);              // Stop de timer als de gewenste temperatuur is bereikt
+
+END_IF]]></ST>
     </Implementation>
     <LineIds Name="Heat_Water">
-      <LineId Id="81" Count="0" />
-      <LineId Id="87" Count="0" />
-      <LineId Id="104" Count="0" />
-      <LineId Id="106" Count="1" />
-      <LineId Id="105" Count="0" />
+      <LineId Id="113" Count="17" />
       <LineId Id="98" Count="0" />
     </LineIds>
   </POU>

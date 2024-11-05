@@ -3,30 +3,49 @@
   <POU Name="Fill_Cup" Id="{6386f4e4-2a89-4b15-aeee-47961f571898}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM Fill_Cup
 VAR
-	    Counter: TON;                     // Timer 
-END_VAR
-]]></Declaration>
+	Filling : BOOL := FALSE;
+	Timer : Ton;
+	Licht : BOOL;
+	Medium : BOOL; 
+	Sterk : BOOL;	
+	
+END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[Counter(IN := TRUE, PT := T#2S); // 2 seconden timer
-
-IF gvl.Water_Warm = TRUE AND gvl.Ingredients_Ready = TRUE THEN
-	gvl.Cup_Filled := TRUE;
-END_IF
+      <ST><![CDATA[
 
 
+IF gvl.Start AND gvl.Water_Warm = TRUE AND gvl.Ingredients_Ready = TRUE THEN
+	Timer(IN := TRUE, PT := T#5S); // 5 seconden timer
 
-
-]]></ST>
+	if gvl.Strength = 0 then;
+		gvl.LamploopOn := true;		
+			IF licht  THEN
+			gvl.Strength := 1;
+			gvl.LamploopOn := FALSE;
+			
+			ELSIF medium THEN 
+			gvl.Strength := 2;
+			gvl.LamploopOn := FALSE;
+			
+			ELSIF sterk THEN
+			gvl.Strength := 3;
+			gvl.LamploopOn := FALSE;
+			END_IF
+	END_if
+	
+	Filling := TRUE;
+	
+	IF Timer.Q THEN 
+		Filling := FALSE;
+		gvl.Cup_Filled := TRUE;
+	END_IF	
+END_IF]]></ST>
     </Implementation>
     <LineIds Name="Fill_Cup">
-      <LineId Id="11" Count="0" />
-      <LineId Id="34" Count="0" />
-      <LineId Id="33" Count="0" />
-      <LineId Id="35" Count="1" />
-      <LineId Id="25" Count="0" />
       <LineId Id="24" Count="0" />
       <LineId Id="23" Count="0" />
       <LineId Id="5" Count="0" />
+      <LineId Id="124" Count="24" />
       <LineId Id="14" Count="0" />
     </LineIds>
   </POU>

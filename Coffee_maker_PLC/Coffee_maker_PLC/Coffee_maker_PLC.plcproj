@@ -30,6 +30,9 @@
     <Compile Include="POUs\Heat_Water.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\Lamp_Loop.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>

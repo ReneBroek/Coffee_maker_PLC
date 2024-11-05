@@ -12,7 +12,7 @@
 				<Task Id="5" Priority="2" CycleTime="50000" AmsPort="352" AdtTasks="true">
 					<Name>Prepare_Ingredients</Name>
 				</Task>
-				<Task Id="6" Priority="3" CycleTime="20000" AmsPort="353" AdtTasks="true">
+				<Task Id="6" Priority="3" CycleTime="10000" AmsPort="353" AdtTasks="true">
 					<Name>Heating</Name>
 				</Task>
 			</Tasks>
