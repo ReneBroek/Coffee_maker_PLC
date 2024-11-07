@@ -1,13 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1">
-  <POU Name="MAIN" Id="{1d951c8b-fcff-4624-aa4d-0b666ca2df31}">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{1d951c8b-fcff-4624-aa4d-0b666ca2df31}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
+	cleaningfb1: Cleaning;
 END_VAR
-]]>
-    </Declaration>
+]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[IF gvl.CleanMachine = TRUE THEN 
+	Cleaning(TypeCleaning := 1);
+END_IF]]></ST>
     </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="2" Count="0" />
+      <LineId Id="6" Count="1" />
+    </LineIds>
   </POU>
 </TcPlcObject>

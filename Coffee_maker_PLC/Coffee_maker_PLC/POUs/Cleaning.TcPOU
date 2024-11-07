@@ -8,7 +8,8 @@ END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
-		CleaningStep : INT := 0;
+	MachineClean : BOOL := FALSE;
+	CleaningStep : INT := 0;
 	WaitTime : TIME := T#2S; // Stel de wachttijd in voor elke stap
     Timer : TIME := T#0s;
     CleaningDone : BOOL := FALSE;
@@ -18,7 +19,7 @@ END_VAR
       <ST><![CDATA[IF TypeCleaning = 1 THEN 
 	// grote schoonmaak 
 	// Reset schoonmaak gereed status
-	Cleaning := FALSE;
+	MachineClean := FALSE;
 	
 	IF NOT CleaningDone THEN
 		CASE CleaningStep OF
@@ -62,7 +63,7 @@ END_VAR
 			END_IF
 		ELSE
 		// Schoonmaakproces voltooid, zet de returnwaarde op TRUE
-		Cleaning := TRUE;
+		MachineClean := TRUE;
 		END_CASE
 	END_IF
 
@@ -71,7 +72,7 @@ END_VAR
 ELSIF TypeCleaning = 2 THEN 
 	// kleine reineging 
 	// Reset schoonmaak gereed status
-	Cleaning := FALSE;
+	MachineClean := FALSE;
 	
 	
 	
@@ -101,7 +102,7 @@ ELSIF TypeCleaning = 2 THEN
 				END_IF
 		ELSE
 			// Schoonmaakproces voltooid, zet de returnwaarde op TRUE
-			Cleaning := TRUE;
+			MachineClean := TRUE;
 		END_CASE
 	END_IF
 END_IF

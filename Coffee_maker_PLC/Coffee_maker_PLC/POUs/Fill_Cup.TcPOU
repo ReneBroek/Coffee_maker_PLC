@@ -8,7 +8,7 @@ VAR
 	Licht : BOOL;
 	Medium : BOOL; 
 	Sterk : BOOL;	
-	
+	cleaningfb: Cleaning;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF gvl.FillCup THEN 
@@ -41,7 +41,7 @@ END_VAR]]></Declaration>
 			gvl.Cup_Filled := TRUE;
 		END_IF	
 		
-		Cleaning(TypeCleaning := 2);
+		Cleaning(TypeCleaning := 2); // korte reiniging 
 		
 	END_IF
 END_IF]]></ST>

@@ -19,6 +19,9 @@
     <PouCall>
       <Name>Prepare_Ingredients</Name>
     </PouCall>
+    <PouCall>
+      <Name>Show_Strength</Name>
+    </PouCall>
     <TaskFBGuid>{3d1767a1-98b9-40e1-a5de-9007ce2c5e35}</TaskFBGuid>
     <Fb_init>{a7eadcb9-19f3-47e7-a3cc-0625fe8b3696}</Fb_init>
     <Fb_exit>{96bfbebd-22e7-4eaf-8f22-ba8e36225203}</Fb_exit>
