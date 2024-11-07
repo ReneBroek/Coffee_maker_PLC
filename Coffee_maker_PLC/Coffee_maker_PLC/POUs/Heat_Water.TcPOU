@@ -28,10 +28,14 @@ ELSIF WaterTemp >= 85 THEN
     gvl.Water_Warm := TRUE;	
     Timer(IN := FALSE);              // Stop de timer als de gewenste temperatuur is bereikt
 
-END_IF]]></ST>
+END_IF
+
+
+
+]]></ST>
     </Implementation>
     <LineIds Name="Heat_Water">
-      <LineId Id="113" Count="17" />
+      <LineId Id="138" Count="21" />
       <LineId Id="98" Count="0" />
     </LineIds>
   </POU>

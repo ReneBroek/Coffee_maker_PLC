@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Show_Strength" Id="{84476a97-7d65-41ec-91e2-fcef7f47b041}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Show_Strength
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF gvl.ShowStrength = TRUE THEN 
+	gvl.lamp1 := 0;
+	gvl.Lamp2 := 0;
+	gvl.Lamp3 := 0;
+	
+	IF gvl.Strength = 1 THEN 
+		gvl.Lamp1 := 1;
+	ELSIF gvl.Strength = 2 THEN 
+		gvl.Lamp2 := 1;
+	ELSIF gvl.Strength = 3 THEN 
+		gvl.Lamp3 := 1;
+	END_IF
+	gvl.ShowStrength := 0;
+	
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="Show_Strength">
+      <LineId Id="6" Count="13" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -3,13 +3,19 @@
   <GVL Name="GVL" Id="{9de2f43c-35f0-4681-aa7d-76ed26f6a282}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
-	Start : BOOL := TRUE;	
+	Start : BOOL := FALSE;	
+	CleanMachine : BOOL := FALSE;
+	FillCup : BOOL := FALSE;
 	Water_Warm: BOOL := FALSE;
     Ingredients_Ready : BOOL := FALSE;
 	Cup_filled : BOOL := FALSE;
 	Coffee_Strength : INT;
 	LamploopOn : BOOL := FALSE;
 	Strength : INT := 0;
+	Lamp1 : BOOL := FALSE; // Output for Lamp 1
+    Lamp2 : BOOL := FALSE; // Output for Lamp 2
+    Lamp3 : BOOL := FALSE; // Output for Lamp 3
+	ShowStrength : BOOL := FALSE;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

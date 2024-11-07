@@ -11,41 +11,43 @@ VAR
 	
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[
-
-
-IF gvl.Start AND gvl.Water_Warm = TRUE AND gvl.Ingredients_Ready = TRUE THEN
+      <ST><![CDATA[IF gvl.FillCup THEN 
+	IF gvl.Water_Warm = TRUE AND gvl.Ingredients_Ready = TRUE THEN
 	Timer(IN := TRUE, PT := T#5S); // 5 seconden timer
 
-	if gvl.Strength = 0 then;
-		gvl.LamploopOn := true;		
-			IF licht  THEN
-			gvl.Strength := 1;
-			gvl.LamploopOn := FALSE;
-			
-			ELSIF medium THEN 
-			gvl.Strength := 2;
-			gvl.LamploopOn := FALSE;
-			
-			ELSIF sterk THEN
-			gvl.Strength := 3;
-			gvl.LamploopOn := FALSE;
-			END_IF
-	END_if
+		IF gvl.Strength = 0 THEN;
+			gvl.LamploopOn := true;		
+				IF licht  THEN
+				gvl.Strength := 1;
+				gvl.LamploopOn := FALSE;
+				
+				ELSIF medium THEN 
+				gvl.Strength := 2;
+				gvl.LamploopOn := FALSE;
+				
+				ELSIF sterk THEN
+				gvl.Strength := 3;
+				gvl.LamploopOn := FALSE;
+				END_IF
+		END_IF
 	
-	Filling := TRUE;
-	
-	IF Timer.Q THEN 
-		Filling := FALSE;
-		gvl.Cup_Filled := TRUE;
-	END_IF	
+		IF gvl.Strength > 0 THEN
+			Filling := TRUE;
+			gvl.ShowStrength := 1;
+		END_IF
+		
+		IF Timer.Q THEN 
+			Filling := FALSE;
+			gvl.Cup_Filled := TRUE;
+		END_IF	
+		
+		Cleaning(TypeCleaning := 2);
+		
+	END_IF
 END_IF]]></ST>
     </Implementation>
     <LineIds Name="Fill_Cup">
-      <LineId Id="24" Count="0" />
-      <LineId Id="23" Count="0" />
-      <LineId Id="5" Count="0" />
-      <LineId Id="124" Count="24" />
+      <LineId Id="157" Count="32" />
       <LineId Id="14" Count="0" />
     </LineIds>
   </POU>

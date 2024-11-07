@@ -3,16 +3,112 @@
   <POU Name="Cleaning" Id="{ee15386c-44bc-46bd-a7f8-580ac15c0d3e}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Cleaning
 VAR_INPUT
+	TypeCleaning : INT;
 END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
+		CleaningStep : INT := 0;
+	WaitTime : TIME := T#2S; // Stel de wachttijd in voor elke stap
+    Timer : TIME := T#0s;
+    CleaningDone : BOOL := FALSE;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[IF TypeCleaning = 1 THEN 
+	// grote schoonmaak 
+	// Reset schoonmaak gereed status
+	Cleaning := FALSE;
+	
+	IF NOT CleaningDone THEN
+		CASE CleaningStep OF
+		0:
+			// Stap 1: Begin het schoonmaakproces
+			Timer := Timer + T#100MS;
+			IF Timer >= WaitTime THEN
+				CleaningStep := CleaningStep + 1;
+				Timer := T#0S; // Reset de timer
+			END_IF
+
+		1:
+			// Stap 2: Spoel de koffieresiduen uit
+			Timer := Timer + T#100MS;
+			IF Timer >= WaitTime THEN
+				CleaningStep := CleaningStep + 1;
+				Timer := T#0S;
+			END_IF
+
+		2:
+			// Stap 3: Reinig waterleidingen
+			Timer := Timer + T#100MS;
+			IF Timer >= WaitTime THEN
+				CleaningStep := CleaningStep + 1;
+				Timer := T#0S;
+			END_IF
+	
+		3:
+			// Stap 4: Reinig koffiedikopvangbak
+			Timer := Timer + T#100MS;
+			IF Timer >= WaitTime THEN
+				CleaningStep := CleaningStep + 1;
+				Timer := T#0S;
+			END_IF
+
+		4:
+			// Stap 5: Reinig externe oppervlakken
+			Timer := Timer + T#100MS;
+			IF Timer >= WaitTime THEN
+				CleaningDone := TRUE;  // Schoonmaak is gereed
+			END_IF
+		ELSE
+		// Schoonmaakproces voltooid, zet de returnwaarde op TRUE
+		Cleaning := TRUE;
+		END_CASE
+	END_IF
+
+	
+	
+ELSIF TypeCleaning = 2 THEN 
+	// kleine reineging 
+	// Reset schoonmaak gereed status
+	Cleaning := FALSE;
+	
+	
+	
+	IF NOT CleaningDone THEN
+		CASE CleaningStep OF
+			0:
+				// Stap 1: Spoel koffieresiduen kort door
+				Timer := Timer + T#100MS;
+				IF Timer >= WaitTime THEN
+					CleaningStep := CleaningStep + 1;
+					Timer := T#0S; // Reset de timer
+				END_IF
+	
+			1:
+				// Stap 2: Spoel waterleidingen kort door
+				Timer := Timer + T#100MS;
+				IF Timer >= WaitTime THEN
+					CleaningStep := CleaningStep + 1;
+					Timer := T#0S;
+				END_IF
+	
+			2:
+				// Stap 3: Reinig opvangbak oppervlakkig
+				Timer := Timer + T#100MS;
+				IF Timer >= WaitTime THEN
+					CleaningDone := TRUE;  // Kleine schoonmaak is gereed
+				END_IF
+		ELSE
+			// Schoonmaakproces voltooid, zet de returnwaarde op TRUE
+			Cleaning := TRUE;
+		END_CASE
+	END_IF
+END_IF
+]]></ST>
     </Implementation>
     <LineIds Name="Cleaning">
+      <LineId Id="17" Count="89" />
       <LineId Id="9" Count="0" />
     </LineIds>
   </POU>

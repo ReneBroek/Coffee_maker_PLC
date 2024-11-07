@@ -32,24 +32,24 @@ END_VAR
 	// Lamp logica
 	CASE nCycleStep OF
 		0: // Lamp 1 aan, andere uit
-			Lamp1 := TRUE;
-			Lamp2 := FALSE;
-			Lamp3 := FALSE;
+			gvl.Lamp1 := TRUE;
+			gvl.Lamp2 := FALSE;
+			gvl.Lamp3 := FALSE;
 		1: // Lamp 2 aan, andere uit
-			Lamp1 := FALSE;
-			Lamp2 := TRUE;
-			Lamp3 := FALSE;
+			gvl.Lamp1 := FALSE;
+			gvl.Lamp2 := TRUE;
+			gvl.Lamp3 := FALSE;
 		2: // Lamp 3 aan, andere uit
-			Lamp1 := FALSE;
-			Lamp2 := FALSE;
-			Lamp3 := TRUE;
+			gvl.Lamp1 := FALSE;
+			gvl.Lamp2 := FALSE;
+			gvl.Lamp3 := TRUE;
 	END_CASE
 END_IF
 
 ]]></ST>
     </Implementation>
     <LineIds Name="Lamp_Loop">
-      <LineId Id="16" Count="32" />
+      <LineId Id="92" Count="32" />
       <LineId Id="5" Count="0" />
     </LineIds>
   </POU>

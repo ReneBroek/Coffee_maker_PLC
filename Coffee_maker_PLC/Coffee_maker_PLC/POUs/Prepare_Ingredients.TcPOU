@@ -28,10 +28,11 @@ ELSIF gvl.Start = FALSE THEN
     Prepairing := FALSE;
     Timer(IN := FALSE);                      // Reset de timer wanneer Start FALSE is
 END_IF
+
 ]]></ST>
     </Implementation>
     <LineIds Name="Prepare_Ingredients">
-      <LineId Id="13" Count="19" />
+      <LineId Id="38" Count="20" />
       <LineId Id="5" Count="0" />
     </LineIds>
   </POU>

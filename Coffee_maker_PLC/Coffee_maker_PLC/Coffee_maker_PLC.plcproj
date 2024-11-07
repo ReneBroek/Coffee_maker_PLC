@@ -42,6 +42,9 @@
     <Compile Include="POUs\Prepare_Ingredients.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\Show_Strength.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
