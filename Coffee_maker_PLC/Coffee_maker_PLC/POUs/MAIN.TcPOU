@@ -9,11 +9,14 @@ END_VAR
     <Implementation>
       <ST><![CDATA[IF gvl.CleanMachine = TRUE THEN 
 	Cleaning(TypeCleaning := 1);
+ELSIF gvl.Start = TRUE THEN 
+	gvl.FillCup := TRUE;
 END_IF]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
       <LineId Id="2" Count="0" />
-      <LineId Id="6" Count="1" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="12" Count="2" />
     </LineIds>
   </POU>
 </TcPlcObject>
