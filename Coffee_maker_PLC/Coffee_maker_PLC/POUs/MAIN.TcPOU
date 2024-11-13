@@ -3,12 +3,13 @@
   <POU Name="MAIN" Id="{1d951c8b-fcff-4624-aa4d-0b666ca2df31}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-	cleaningfb1: Cleaning;
+	
+	cleaningfb: Cleaning;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF gvl.CleanMachine = TRUE THEN 
-	Cleaning(TypeCleaning := 1);
+	cleaningfb(TypeCleaning := 1);
 ELSIF gvl.Start = TRUE THEN 
 	gvl.FillCup := TRUE;
 END_IF]]></ST>

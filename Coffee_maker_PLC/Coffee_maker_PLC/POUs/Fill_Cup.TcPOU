@@ -41,14 +41,16 @@ END_VAR]]></Declaration>
 			gvl.Cup_Filled := TRUE;
 		END_IF	
 		
-		Cleaning(TypeCleaning := 2); // korte reiniging 
+		cleaningfb(TypeCleaning := 2); // korte reiniging 
 		
 	END_IF
-END_IF]]></ST>
+END_IF
+]]></ST>
     </Implementation>
     <LineIds Name="Fill_Cup">
       <LineId Id="157" Count="32" />
       <LineId Id="14" Count="0" />
+      <LineId Id="198" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

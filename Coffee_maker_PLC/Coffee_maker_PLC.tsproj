@@ -25,7 +25,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{DA0E39AD-60FA-4761-BC3A-4539D05EE1CD}" Name="Coffee_maker_PLC" PrjFilePath="Coffee_maker_PLC\Coffee_maker_PLC.plcproj" TmcFilePath="Coffee_maker_PLC\Coffee_maker_PLC.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Coffee_maker_PLC\Coffee_maker_PLC.tmc" TmcHash="{24446F1B-5FD6-B4B1-35D9-2A45C1F97593}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Coffee_maker_PLC\Coffee_maker_PLC.tmc" TmcHash="{A4A7A501-608F-3195-4E2A-82C3488BFCBC}">
 					<Name>Coffee_maker_PLC Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Contexts>
